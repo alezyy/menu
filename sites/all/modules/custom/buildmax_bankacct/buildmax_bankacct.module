@@ -1,0 +1,68 @@
+  <?php
+
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+function buildmax_bankacct_webform_select_options_info() {
+	$items = array();
+
+	if (function_exists('_buildmax_get_bankacct_nodes')) {
+		$items['bankacct'] = array(
+	    'title' => t('Bank Account Name'),
+	    'options callback' => '_buildmax_get_bankacct_nodes',
+	  );
+	}
+	
+	if (module_exists('views')) {
+		$items['views'] = array(
+			'title' => t('A view'),
+			'options callback' => '_buildmax_bankacct_get_view_options',
+		);
+	}
+
+  return $items;
+}
+
+/**
+ * Returns an array of Story nodes keyed on the node ID.
+ *
+ * @return array
+ * @author Kosta Harlan
+ */
+  
+function _buildmax_get_bankacct_nodes() {
+	$nodes = array();
+	
+	$select = db_query(db_rewrite_sql("SELECT nid FROM {webform_submitted_data} WHERE nid = 24 and cid =2 ORDER BY data"));
+	while ($node = db_fetch_object($select)) {
+		$nodes[$node->nid] = $node->data;
+	}
+	return $nodes;
+}
+
+/**
+ * Options callback for webform_select_options_info(). The assumption is that your view is displaying node data.
+ *
+ * @return array of items to populate the select list with.
+ * @author Kosta Harlan
+ */
+
+
+function _buildmax_bankacct_get_view_options() {
+		$view = views_get_view('bank_account_list_name', true);
+		$view->execute();
+		$items = array();
+	
+	foreach ($view->result as $item) {
+	  $full_node = node_load($item->nid);
+	  $items[$item->nid] = $full_node->data;
+	}
+	return $items;
+}
+
+
+
+

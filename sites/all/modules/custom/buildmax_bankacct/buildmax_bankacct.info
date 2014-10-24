@@ -1,0 +1,17 @@
+name = Buildmax  Bank Account list
+core = 7.x
+version = "7.x-1.x-dev"
+description = Buildmax bank account list module
+package = BuildMax
+
+;dependencies[] = features
+dependencies[] = webform
+; base test case
+files[] = buildmax_bankacct.modules
+
+; functional test cases. Those which are in the group tremblant_deploy should
+; always be working and are tested by jenkins
+; those which are not in the tremblant_deploy group should be related to an
+; open issue in jira. Please put the sprint and issue number in the test name.
+
+;files[] = tests/challenge.test

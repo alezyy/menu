@@ -1,0 +1,230 @@
+<?php
+/**
+ * @file
+ * Install file for Deploy Update
+ */
+
+function buildmax_deploy_install() {
+  $func_proto = 'buildmax_deploy_update_';
+  for ($i = 7100; $i < 8000; $i++) {
+    $func = $func_proto . $i;
+    if (function_exists($func)) {
+      $func();
+    } 
+  }
+}
+
+/**
+ * Install & Enable base modules
+ */
+function _buildmax_enable_modules() {
+  $enable = array(
+   'floating_block', 
+  );
+  $disable = array(
+  );
+  module_enable($enable);
+  module_disable($disable);
+
+}
+
+/**
+ * Deployment function for 1st deployment
+ * Enable Adminimal theme and menu helper, Features, Strongarm, VBO, Views
+ */
+function buildmax_deploy_update_7100() {
+  _buildmax_enable_modules();
+}
+
+/**
+ * Deployment function for 1st deployment
+ * Enable Adminimal theme and menu helper, Features, Strongarm, VBO, Views
+ */
+function buildmax_deploy_update_7101() {
+  module_enable(array('floating_block'));
+}
+
+/**
+ * Deployment function for 1st deployment
+ * Enable Adminimal theme and menu helper, Features, Strongarm, VBO, Views
+ */
+function buildmax_deploy_update_7108() {
+  module_enable(array('floating_block'));
+}
+
+
+/*
+function challenge_deploy_install() {
+  $func_proto = 'challenge_deploy_update_';
+  for ($i = 7100; $i < 8000; $i++) {
+    $func = $func_proto . $i;
+    if (function_exists($func)) {
+      $func();
+    } 
+  }
+}
+
+/**
+ * Install & Enable base modules
+ *
+function _challenge_enable_modules() {
+  $enable = array(
+   'themeKey', 
+  );
+  $disable = array(
+  );
+  module_enable($enable);
+  module_disable($disable);
+
+}
+
+/**
+ * Deployment function for 1st deployment
+ * Enable Adminimal theme and menu helper, Features, Strongarm, VBO, Views
+ *
+function challenge_deploy_update_7100() {
+  _challenge_enable_modules();
+}
+
+/**
+ * Enabling context ui
+ *
+function challenge_deploy_update_7101() {
+  module_enable(array('context_ui', 'context_layouts'));
+}
+
+/**
+ * enable menu_attributes to add html tag on menu item link.
+ * color_box and colorbox_node modules for overlay webform
+ * email module for field email in the form
+ * Webform module is added to built challenge entry page and regulation page
+ * social_timeline module to feeds social media like instagram, twitter and facebook
+ * 
+ *
+
+function challenge_deploy_update_7102() {
+  module_enable(array('menu_attributes', 'colorbox', 'colorbox_node', 'email', 'webform','social_timeline'));
+}
+
+/**
+ * webform_ajax module required for the webform module to overlay webform
+ *
+function challenge_deploy_update_7103() {
+  module_enable(array('webform_ajax'));
+}
+
+function challenge_deploy_update_7104() {
+  module_enable(array('themekey_ui'));
+}
+
+/* *
+ * Module challenge_feature for menu homepage item 
+ *
+function challenge_deploy_update_7107() {
+  module_enable(array('challenge_feature'));   
+}
+
+/**
+ * Enabling challenge theme
+ *
+function challenge_deploy_update_7108() {
+  theme_enable(array('bootstrap_challenge'));
+}
+
+/**
+ * Deploying themekey settings
+ *
+function challenge_deploy_update_7110() {
+  db_query("INSERT INTO {themekey_properties} (property, operator, value, weight, theme, enabled, wildcards, parent, module) VALUES ('drupal:path', '=', 'homepage/all', 1, 'gg_3', 1, '',  0, 'themekey')");
+  db_query("INSERT INTO {themekey_properties} (property, operator, value, weight, theme, enabled, wildcards, parent, module) VALUES ('drupal:path', '=', 'homech/all', 1, 'bootstrap_challenge', 1, '',  0, 'themekey')");
+
+  }
+  
+  /**
+   * Deploying themkey settings 
+   *
+function challenge_deploy_update_7111() {
+  db_query("INSERT INTO {themekey_properties} (property, operator, value, weight, theme, enabled, wildcards, parent, module) VALUES ('node:type', '=', 'webform', 1, 'bootstrap_challenge', 1, '',  0, 'themekey')");
+  features_revert(array('challenge_feature' => array('field_base', 'menu_links','webform','dependencies')));
+  }
+
+/**
+ * Deploying modify challenge_feature module and add template switching
+ *
+  
+function challenge_deploy_update_7116() {
+  db_query("INSERT INTO {themekey_properties} (property, operator, value, weight, theme, enabled, wildcards, parent, module) VALUES ('node:type', '=', 'webform', 1, 'bootstrap_challenge', 1, '',  0, 'themekey')");
+  features_revert(array('challenge_feature' => array('field_base', 'menu_links','webform','dependencies')));
+  }
+  
+/**
+ * Deploying webform_features module allow us to export webform content type
+ *
+function challenge_deploy_update_7117() {
+  module_enable(array('webform_features'));
+      
+  }
+  
+function challenge_deploy_update_7118(){
+  module_enable(array('challenge'));
+      
+  }
+  
+/**
+ * Deploying module sharethis. This module allow to add social media button where people can share via facebook, twitter, google+ and the giving moment web site
+ *  
+
+function challenge_deploy_update_7119() {
+  module_enable(array('sharethis'));    
+ }
+ 
+
+ 
+ /**
+  * Deploying ldap module for remote data sources user account roles & permissions syncing
+  *
+ 
+ function challenge_deploy_update_7122() {
+  module_enable(array('ldap_user', 'ldap_test', 'ldap_sso', 'ldap_servers','ldap_help','ldap_authorization_og','ldap_authorization_drupal_role','ldap_authorization','ldap_authentication'));
+  
+ }
+ 
+ /**
+  * Deploying node according to themekey
+  *
+ 
+function challenge_deploy_update_7123() {
+ db_query("INSERT INTO {themekey_properties} (property, operator, value, weight, theme, enabled, wildcards, parent, module) VALUES ('node:nid', '=', '1001', 1, 'bootstrap_challenge', 1, '',  0, 'themekey')");
+ db_query("INSERT INTO {themekey_properties} (property, operator, value, weight, theme, enabled, wildcards, parent, module) VALUES ('node:nid', '=', '1002', 1, 'bootstrap_challenge', 1, '',  0, 'themekey')");
+ db_query("INSERT INTO {themekey_properties} (property, operator, value, weight, theme, enabled, wildcards, parent, module) VALUES ('node:nid', '=', '1004', 1, 'bootstrap_challenge', 1, '',  0, 'themekey')");
+ db_query("INSERT INTO {themekey_properties} (property, operator, value, weight, theme, enabled, wildcards, parent, module) VALUES ('node:nid', '=', '1007', 1, 'bootstrap_challenge', 1, '',  0, 'themekey')");
+ module_enable(array('uuid_features','superfish')); 
+ 
+ }
+ 
+ /**
+  * Deploying accordion module
+  * This module provide accordion effect to selected blocks. 
+  * This module provides admin interface to add more Accordion widgets and for each Accordion widget we can choose set of blocks as content.
+  *
+function challenge_deploy_update_7124() {
+  module_enable(array('accordion_blocks'));        
+ }
+ 
+ /**
+  * challenge features revert
+  *
+ 
+function challenge_deploy_update_7125() {
+  features_revert(array('challenge_feature' => array('field_base', 'menu_links','webform','dependencies','views_view','fe_block_settings', 'context','fe_block_boxes','node')));   
+}
+
+
+/**
+ * Deploy add challenge frontpage 
+ *
+
+function custom_functions_update_7126() {
+ variable_set('site_frontpage', 'homech/all');   
+    
+}

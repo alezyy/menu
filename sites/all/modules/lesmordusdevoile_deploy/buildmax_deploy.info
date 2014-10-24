@@ -1,0 +1,17 @@
+name = buildmax Deploy
+core = 7.x
+version = "7.x-1.x-dev"
+description = Voir http://dcycleproject.org/blog/44/what-site-deployment-module
+package = Buildmax deploy
+
+;dependencies[] = features
+
+; base test case
+files[] = buildmax_deploy.test
+
+; functional test cases. Those which are in the group tremblant_deploy should
+; always be working and are tested by jenkins
+; those which are not in the tremblant_deploy group should be related to an
+; open issue in jira. Please put the sprint and issue number in the test name.
+
+;files[] = tests/challenge.test

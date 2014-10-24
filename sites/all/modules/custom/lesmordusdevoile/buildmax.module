@@ -1,0 +1,138 @@
+  <?php
+
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+function buildmax_menu () {
+   
+  $items = array ();
+    
+      $items['homech/%'] = array(
+      'page callback' => 'homech_callback',
+      'page arguments' => array(1),
+      'access callback' => TRUE,
+  );
+   
+      /*
+      $items['challenge-entry'] = array(
+      'page callback' => 'challenge_entry_callback',
+      'page arguments' => array(1),
+      'access callback' => TRUE,
+  );
+      */
+      
+    return $items;
+}
+
+
+/**
+ * callback of /homepage
+ */
+function homech_callback($category){
+    
+    return theme('homech_template', array('category' => $category));
+}
+
+/**
+ *  callback of entry page
+ */
+/*
+function challenge_entry_callback(){
+  return theme('challenge-entry');
+}
+/*
+
+/**
+ * Implementation of hook_theme
+ * registering homech-page.tpl.php into theme registry
+ */
+function buildmax_theme($existing, $type, $theme, $path) {
+    return array (
+    'homech_template' => array (
+      'template' => 'homech-page' ,
+      'path' => drupal_get_path('theme', 'bootstrap_buildmax').'/templates',
+       )
+        ) ;
+}
+
+function buildmax_webform_select_options_info() {
+	$items = array();
+
+	if (function_exists('_buildmax_get_story_nodes')) {
+		$items['story-nodes'] = array(
+	    'title' => t('Story nodes'),
+	    'options callback' => '_buildmax_get_story_nodes',
+	  );
+	}
+	
+	if (module_exists('views')) {
+		$items['views'] = array(
+			'title' => t('A view'),
+			'options callback' => '_buildmax_get_view_options',
+		);
+	}
+
+  return $items;
+}
+
+/**
+ * Returns an array of Story nodes keyed on the node ID.
+ *
+ * @return array
+ * @author Kosta Harlan
+ */
+function _buildmax_get_story_nodes() {
+	$nodes = array();
+	
+	$select = db_query(db_rewrite_sql("SELECT nid, title FROM {node} WHERE type = 'story' ORDER BY title"));
+	while ($node = db_fetch_object($select)) {
+		$nodes[$node->nid] = $node->title;
+	}
+	return $nodes;
+}
+
+/**
+ * Options callback for webform_select_options_info(). The assumption is that your view is displaying node data.
+ *
+ * @return array of items to populate the select list with.
+ * @author Kosta Harlan
+ */
+function _buildmax_get_view_options() {
+		$view = views_get_view('storyv', true);
+		$view->execute();
+		$items = array();
+	
+	foreach ($view->result as $item) {
+	  $full_node = node_load($item->nid);
+	  $items[$item->nid] = $full_node->title;
+	}
+	return $items;
+}
+
+/**
+ *  Function to add  cancel button in the webform
+ */
+
+function buildmax_form_alter(&$form, $form_state, $form_id) {
+  if (strpos($form_id, 'webform_client_form_') === 0 ) {
+    $form['actions']['reset'] = array(
+      '#type' => 'button',
+      '#value' => t('Cancel'),
+      '#weight' => 100,
+      '#validate' => array(),
+   //   '#attributes' => array('onclick' => 'this.form.reset(); return false;'),
+       '#attributes' => array('onClick' =>'document.location.href="/buildmax"'),
+);
+    
+  }
+  
+ 
+  
+  
+  
+}
+
+
