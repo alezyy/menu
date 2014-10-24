@@ -1,0 +1,23 @@
+.sf-menu.sf-style-simple {
+    float: right;
+    margin: 0px;
+   
+    margin-top: -90px;
+}
+.sf-menu.sf-style-simple a, .sf-menu.sf-style-simple a:visited {
+    color: #000;
+    font: 15px Arial,Helvetica,Tahoma,Verdana,sans-serif;
+    padding: 1.2em 1.5em;
+    text-decoration: none;
+    text-shadow: 1px 1px 0px #FFF;
+}
+.sf-menu.sf-style-simple.sf-horizontal > li.first {
+    border-top-left-radius: 58px;
+    border-bottom-left-radius: 58px;
+}
+.sf-menu, .sf-menu * {
+    list-style: outside none none;
+    margin: 0px;
+    padding: 0px;
+    height: 50px;
+}
