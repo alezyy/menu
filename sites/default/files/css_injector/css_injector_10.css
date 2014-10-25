@@ -1,0 +1,35 @@
+.container {
+    padding-right: 1px;
+    padding-left: 1px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -10px;
+}
+.footer {
+    margin-top: 0px;
+    padding-top: 2px;
+    padding-bottom: 26px;
+    border-top: 1px solid #E5E5E5;
+    border-radius: 14px;
+    width: 100%;
+    
+}
+
+.sf-menu.sf-style-coffee li, .sf-menu.sf-style-coffee.sf-navbar {
+    background: none repeat scroll 0% 0% #CE362F ;
+    height:70px;
+}
+
+.sf-menu.sf-style-coffee a {
+    border: 1px dashed #FFFFFF;
+    
+    color: #F1DEC6;;
+    font-weight: bold;
+    padding: 0.75em 1em;
+    border-radius: 2px;
+     height:70px;
+}
+.region-footer {
+ font-size:17px; 
+ 
+}

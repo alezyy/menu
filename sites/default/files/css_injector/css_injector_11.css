@@ -1,0 +1,7 @@
+.navbar-default {
+    background-color: #E11F2D;
+    border-color: #E11F2D;
+}
+.navbar-fixed-top, .navbar-fixed-bottom {
+    border-radius: 14px;
+}

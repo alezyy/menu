@@ -1,0 +1,14 @@
+#block-block2 {
+ 
+ width :500px;   
+}
+#block-block2 p {
+ 
+ width :500px;   
+}
+
+.region-sidebar-first well well-lg  {
+padding: 0px;
+border-radius: 6px;
+padding-top: 0;
+}
